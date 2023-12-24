@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { DataInterface } from 'src/app/interaces/data.interface';
+import { DataInterface } from 'src/app/interfaces/data.interface';
 import { DataService } from 'src/app/services/data.service';
 import { ButtonModule } from 'primeng/button';
 

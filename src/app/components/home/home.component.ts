@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { DataInterface } from 'src/app/interfaces/data.interface';
 import { DataService } from 'src/app/services/data.service';
 import { ButtonModule } from 'primeng/button';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
   text: DataInterface = { message : ''}
 
   constructor(
-    private router: Router, 
+    private router: Router,
+    private authService: AuthService, 
     private messageService: MessageService, 
     private dataService: DataService){
 
@@ -35,8 +37,10 @@ export class HomeComponent implements OnInit {
   }
 
   logOut(){
-    localStorage.clear();
-    this.router.navigate(['login'])
+    
+   
+ this.authService.logOutUser();
+ this.router.navigate(['login'])
 
   }
 

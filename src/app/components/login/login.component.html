@@ -10,13 +10,13 @@
         name="username"
         placeholder="Enter your username"
       />
-      <!-- <small
+      <small
         *ngIf="(username.invalid && username.dirty) || username.touched"
         class="block p-error"
       >
         <div *ngIf="username.errors?.['required']">Username is required</div>
         <div *ngIf="username.errors?.['username']">Username should be valid</div>
-      </small> -->
+      </small>
     </div>
     <!-- <div class="field">
       <label for="email">Email</label>
@@ -47,13 +47,13 @@
         placeholder="Type your Password"
       />
 
-      <!-- <small
+      <small
         *ngIf="(password.invalid && password.dirty) || password.touched"
         class="block p-error"
       >
         <div *ngIf="password.errors?.['required']">Password is required</div>
       
-      </small> -->
+      </small>
     </div>
     <p-button label="SIGN IN" styleClass="w-full" [disabled]="loginForm.invalid" type="submit"></p-button>
     <div class="mt-2">Not a member? <a routerLink="/register">Register</a></div>

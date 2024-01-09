@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
     const token = localStorage.getItem('jwtToken');
-    debugger
+    // the route can be activated and navigation is allowed
  if(token){
   return true;
  }else{

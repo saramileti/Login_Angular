@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -10,8 +10,8 @@ import { passwordMatchValidator } from 'src/app/shared/password-match.directive'
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent {
-  registerForm: FormGroup;
+export class RegisterComponent implements OnInit {
+  registerForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -19,9 +19,11 @@ export class RegisterComponent {
     private messageService: MessageService,
     private router: Router
   ) {
-    this.registerForm = this.fb.group(
-      {
-        username: [
+   
+  }
+  ngOnInit(): void {
+   this.registerForm =  this.fb.group({
+    username: [
           '',
           [
             Validators.required,
@@ -31,11 +33,11 @@ export class RegisterComponent {
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required],
-      },
-      {
-        validators: passwordMatchValidator,
-      }
-    );
+   },
+   {
+    validators: passwordMatchValidator,
+  }
+    )
   }
 
   get username() {

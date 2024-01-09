@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 
@@ -11,12 +9,28 @@ import { environment } from 'src/environments/environments';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
+
   loginUser(data: any): Observable<any> {
     return this.http.post(environment.baseUrl + '/authenticate', data);
   }
 
-  registerUser(regData: any): Observable<any>{
-    return this.http.post(environment.baseUrl + '/register', regData, {
+  registerUser(data: any): Observable<any>{
+    return this.http.post(environment.baseUrl + '/register', data, {
       responseType: 'text',});
   }
-}
+
+  logOutUser (){
+   const token = localStorage.getItem('jwtToken')
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer " + token!);
+    this.http.get(environment.baseUrl + '/logout', {headers}).subscribe(() =>{
+      localStorage.removeItem("token");
+   
+    })
+    console.log(headers);
+    
+    };
+
+
+  }
+

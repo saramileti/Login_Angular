@@ -4,14 +4,12 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
+  constructor(private http: HttpClient) {}
 
-  //  url = 'http://localhost:8080'
-  constructor(private http: HttpClient) { }
-
-  getData(): Observable<any>{ 
+  getData(): Observable<any> {
     return this.http.get(environment.baseUrl + '/hello');
   }
 }

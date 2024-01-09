@@ -20,6 +20,7 @@ import { JwtInterceptor } from './shared/intercepor';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    
    
   ],
   imports: [
@@ -31,7 +32,7 @@ import { JwtInterceptor } from './shared/intercepor';
     ButtonModule,
     HttpClientModule,
     ToastModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule, HomeComponent
 
   ],
   providers: [MessageService,   JwtInterceptor,

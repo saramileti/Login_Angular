@@ -11,46 +11,42 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   imports: [ButtonModule],
-  standalone: true
+  standalone: true,
 })
 export class HomeComponent implements OnInit {
-  text: DataInterface = { message : ''}
+  text: DataInterface = { message: '' };
 
   constructor(
     private router: Router,
-    private authService: AuthService, 
-    private messageService: MessageService, 
-    private dataService: DataService){
-
-  }
+    private authService: AuthService,
+    private messageService: MessageService,
+    private dataService: DataService
+  ) {}
   ngOnInit(): void {
     const token = localStorage.getItem('token');
-  
-    
-    if (token){
-      this.router.navigate(['/home'])
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: ' successfully' });
-     
+
+    if (token) {
+      this.router.navigate(['/home']);
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: ' successfully',
+      });
     } else {
       this.router.navigate(['login']);
     }
   }
 
-  logOut(){
-    
-   
- this.authService.logOutUser();
- this.router.navigate(['login'])
-
+  logOut() {
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
 
-  hello(){
-   this.dataService.getData().subscribe(
-      (result: DataInterface) =>{
-        console.log(result);
-        
-        this.text.message = result.message
-      });
-  }
+  hello() {
+    this.dataService.getData().subscribe((result: DataInterface) => {
+      console.log(result);
 
+      this.text.message = result.message;
+    });
+  }
 }
